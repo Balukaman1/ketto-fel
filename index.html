@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Az első világháború (1914–1918)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #f7f3ec;
+      color: #1a1611;
+      font-family: 'EB Garamond', serif;
+      font-size: 18px;
+      line-height: 1.78;
+      min-height: 100vh;
+    }
+
+    .page-wrapper {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: #140e08;
+      color: #f0e8d8;
+      padding: 5rem 3rem 4rem;
+      border-radius: 18px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 3rem;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg, transparent, transparent 2px,
+        rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px
+      );
+      pointer-events: none;
+    }
+
+    .hero-bg-year {
+      font-family: 'Playfair Display', serif;
+      font-size: 160px;
+      font-weight: 700;
+      color: rgba(200,160,100,0.10);
+      position: absolute;
+      right: 2rem;
+      bottom: -1rem;
+      line-height: 1;
+      user-select: none;
+      letter-spacing: -6px;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(200,140,60,0.22);
+      color: #e8c880;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-family: 'EB Garamond', serif;
+      padding: 5px 16px;
+      border-radius: 3px;
+      border: 0.5px solid rgba(200,140,60,0.4);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px;
+      font-weight: 700;
+      line-height: 1.12;
+      color: #f5e8d0;
+      margin-bottom: 1rem;
+      max-width: 540px;
+    }
+
+    .hero-subtitle {
+      color: rgba(240,230,210,0.6);
+      font-size: 17px;
+      max-width: 460px;
+      font-style: italic;
+    }
+
+    .hero-dates {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 3rem;
+    }
+
+    .hero-date-item { display: flex; flex-direction: column; }
+
+    .hero-date-label {
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(240,210,150,0.5);
+    }
+
+    .hero-date-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: #e8c880;
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #888070;
+      font-family: 'EB Garamond', serif;
+      margin-bottom: 1rem;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 3rem 0;
+      color: #aaa090;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 0.5px;
+      background: #d8d0c4;
+    }
+
+    /* ── ALLIANCES ── */
+    .alliances-section {
+      display: grid;
+      grid-template-columns: 1fr 50px 1fr;
+      gap: 0;
+      margin-bottom: 3rem;
+      align-items: start;
+    }
+
+    .alliance-card {
+      border: 0.5px solid #d0c8be;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .alliance-header {
+      padding: 1.5rem 1.75rem;
+      border-bottom: 0.5px solid #d8d0c4;
+    }
+
+    .alliance-card.entente .alliance-header { background: #0b1928; }
+    .alliance-card.central .alliance-header { background: #1a1008; }
+
+    .alliance-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .alliance-card.entente .alliance-name { color: #7ab8f5; }
+    .alliance-card.central .alliance-name { color: #e8b864; }
+
+    .alliance-aka { font-size: 13px; font-style: italic; color: rgba(255,255,255,0.45); }
+
+    .alliance-body { padding: 1.5rem 1.75rem; }
+
+    .country-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+
+    .country-item { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; }
+
+    .country-flag { font-size: 22px; line-height: 1; flex-shrink: 0; margin-top: 2px; }
+
+    .country-name { font-weight: 500; color: #1a1611; line-height: 1.3; }
+
+    .country-note { display: block; font-size: 12px; color: #888070; font-style: italic; font-weight: 400; }
+
+    .vs-col {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 5rem;
+    }
+
+    .vs-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #f0ece4;
+      border: 0.5px solid #c8c0b4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #888070;
+    }
+
+    /* ── STATS ── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 3rem;
+    }
+
+    .stat-card {
+      background: #eee8de;
+      border-radius: 10px;
+      padding: 1.25rem;
+    }
+
+    .stat-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #1a1611;
+      line-height: 1.1;
+    }
+
+    .stat-label { font-size: 13px; color: #888070; margin-top: 5px; font-style: italic; }
+
+    /* ── CAUSES ── */
+    .cause-card {
+      background: #fff;
+      border: 0.5px solid #d0c8be;
+      border-radius: 14px;
+      padding: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .cause-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      color: #1a1611;
+    }
+
+    .cause-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .cause-item {
+      background: #f5f0e8;
+      border-radius: 10px;
+      padding: 1.1rem 1.25rem;
+    }
+
+    .cause-letter {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #c8b890;
+      margin-bottom: 4px;
+      line-height: 1;
+    }
+
+    .cause-name { font-size: 15px; font-weight: 500; color: #1a1611; margin-bottom: 5px; }
+    .cause-desc { font-size: 13px; color: #666055; font-style: italic; line-height: 1.5; }
+
+    /* ── TIMELINE ── */
+    .timeline-section {
+      border: 0.5px solid #d0c8be;
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 3rem;
+    }
+
+    .timeline-header {
+      padding: 1.5rem 2rem;
+      background: #eee8de;
+      border-bottom: 0.5px solid #d0c8be;
+    }
+
+    .timeline-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #1a1611;
+    }
+
+    .timeline-body { padding: 0.5rem 2rem; background: #fff; }
+
+    .tl-item {
+      display: grid;
+      grid-template-columns: 80px 1px 1fr;
+      gap: 0 1.25rem;
+      padding: 1.5rem 0;
+      border-bottom: 0.5px solid #e8e0d4;
+    }
+
+    .tl-item:last-child { border-bottom: none; }
+
+    .tl-year {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #b0a890;
+      text-align: right;
+      padding-top: 3px;
+    }
+
+    .tl-line-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .tl-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #c8b890;
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+
+    .tl-vline {
+      width: 0.5px;
+      flex: 1;
+      background: #ddd8ce;
+      margin-top: 5px;
+    }
+
+    .tl-item:last-child .tl-vline { display: none; }
+
+    .tl-content h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-weight: 500;
+      margin-bottom: 5px;
+      color: #1a1611;
+    }
+
+    .tl-content p { font-size: 15px; color: #555045; line-height: 1.6; }
+
+    /* ── FOOTER ── */
+    .footer-note {
+      text-align: center;
+      font-size: 15px;
+      font-style: italic;
+      color: #999080;
+      padding: 2rem 0 0;
+      border-top: 0.5px solid #d8d0c4;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ── PHOTO GALLERY ── */
+    .photo-section {
+      margin-bottom: 3rem;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .photo-block {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 0.5px solid #d0c8be;
+      background: #1a1611;
+    }
+
+    .photo-block img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      filter: sepia(30%) contrast(1.05);
+      transition: filter 0.3s ease;
+    }
+
+    .photo-block img:hover { filter: sepia(0%) contrast(1.1); }
+
+    .photo-caption {
+      padding: 0.9rem 1rem;
+      background: #1a1611;
+    }
+
+    .photo-caption-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .photo-block.entente-photo .photo-caption-title { color: #7ab8f5; }
+    .photo-block.central-photo .photo-caption-title { color: #e8b864; }
+
+    .photo-caption-desc {
+      font-size: 12px;
+      color: rgba(240,230,210,0.5);
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 34px; }
+      .alliances-section { grid-template-columns: 1fr; gap: 1rem; }
+      .vs-col { padding-top: 0; padding-bottom: 0; }
+      .vs-badge { width: 36px; height: 36px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .cause-grid { grid-template-columns: 1fr; }
+      .hero-bg-year { font-size: 90px; }
+      .photo-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg-year">1914</div>
+    <div class="hero-tag">1914 — 1918</div>
+    <h1>Az első világháború</h1>
+    <p class="hero-subtitle">„A háború, amely véget vet minden háborúnak" — az emberiség történelmének első ipari méretű globális konfliktusa</p>
+    <div class="hero-dates">
+      <div class="hero-date-item">
+        <span class="hero-date-label">Kezdete</span>
+        <span class="hero-date-value">1914. jún. 28.</span>
+      </div>
+      <div class="hero-date-item">
+        <span class="hero-date-label">Vége</span>
+        <span class="hero-date-value">1918. nov. 11.</span>
+      </div>
+      <div class="hero-date-item">
+        <span class="hero-date-label">Időtartam</span>
+        <span class="hero-date-value">4 év, 3 hónap</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALLIANCES -->
+  <p class="section-label">A szembenálló felek</p>
+
+  <!-- PHOTO GALLERY -->
+  <div class="photo-section">
+    <div class="photo-grid">
+      <div class="photo-block entente-photo">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Cheshire_Regiment_trench_Somme_1916.jpg/800px-Cheshire_Regiment_trench_Somme_1916.jpg"
+          alt="Brit katonák a Somme-i csatában, 1916"
+          onerror="this.style.display='none'"
+        />
+        <div class="photo-caption">
+          <div class="photo-caption-title">Antant hatalmak</div>
+          <div class="photo-caption-desc">Brit katonák (Cheshire Regiment) lövészárokban a Somme folyónál, 1916 — Imperial War Museum</div>
+        </div>
+      </div>
+      <div class="photo-block central-photo">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/German_soldiers_in_a_railroad_car_on_the_way_to_the_front_during_early_World_War_I%2C_taken_in_1914.jpg/800px-German_soldiers_in_a_railroad_car_on_the_way_to_the_front_during_early_World_War_I%2C_taken_in_1914.jpg"
+          alt="Német katonák vonaton a frontra, 1914"
+          onerror="this.style.display='none'"
+        />
+        <div class="photo-caption">
+          <div class="photo-caption-title">Központi hatalmak</div>
+          <div class="photo-caption-desc">Német katonák vasúton a frontra tartanak, 1914 — Wikimedia Commons</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alliances-section">
+    <!-- ENTENTE -->
+    <div class="alliance-card entente">
+      <div class="alliance-header">
+        <div class="alliance-name">Antant hatalmak</div>
+        <div class="alliance-aka">Triple Entente & szövetségeseik</div>
+      </div>
+      <div class="alliance-body">
+        <ul class="country-list">
+          <li class="country-item">
+            <span class="country-flag">🇫🇷</span>
+            <span>
+              <span class="country-name">Franciaország</span>
+              <span class="country-note">Alapító antant-hatalom</span>
+            </span>
+          </li>
+          <li class="country-item">
+            <span class="country-flag">🇬🇧</span>
+            <span>
+              <span class="country-name">Nagy-Britannia</span>
+              <span class="country-note">+ brit gyarmatok (India, Ausztrália stb.)</span>
+            </span>
+          </li>
+          <li class="country-item">
+            <span class="country-flag">🇷🇺</span>
+            <span>
+              <span class="country-name">Oroszország</span>
+              <span class="country-note">1917-ig, majd forradalommal kilépett</span>
+            </span>
+          </li>
+          <li class="country-item">
+            <span class="country-flag">🇮🇹</span>
+            <span>
+              <span class="country-name">Olaszország</span>
+              <span class="country-note">1915-től csatlakozott (korábban semleges)</span>
+            </span>
+          </li>
+          <li class="country-item">
+            <span class="country-flag">🇺🇸</span>
+            <span>
+              <span class="country-name">Egyesült Államok</span>
+              <span class="country-note">1917-től, döntő szerepű belépés</span>
+            </span>
+          </li>
+          <li class="country-item">
+            <span class="country-flag">🇷🇸</span>
+            <span>
+              <span class="country-name">Szerbia, Románia, Görögország</span>
+              <span class="country-note">Balkáni szövetségesek</span>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- VS -->
+    <div class="vs-col">
+      <div class="vs-badge">vs</div>
+    </div>
+
+    <!-- CENTRAL -->
+    <div class="alliance-card central">
+      <div class="alliance-header">
+        <div class="alliance-name">Központi hatalmak</div>
+        <div class="alliance-aka">Mittelmächte / Triple Alliance</div>
+      </div>
+      <div class="alliance-body">
+        <ul class="country-list">
+          <li class="country-item">
+            <span class="country-flag">🇩🇪</span>
+            <span>
+              <span class="country-name">Német Birodalom</span>
+              <span class="country-note">A szövetség vezető katonai ereje</span>
+            </span>
+          </li>
+          <li class="country-item">
+            <span class="country-flag">🇦🇹</span>
+            <span>
+              <span class="country-name">Osztrák–Magyar Monarchia</span>
+              <span class="country-note">A háborút kirobbantó hatalom</span>
+            </span>
+          </li>
+          <li class="country-item">
+            <span class="country-flag">🇹🇷</span>
+            <span>
+              <span class="country-name">Oszmán Birodalom</span>
+              <span class="country-note">1914 novemberétől csatlakozott</span>
+            </span>
+          </li>
+          <li class="country-item">
+            <span class="country-flag">🇧🇬</span>
+            <span>
+              <span class="country-name">Bulgária</span>
+              <span class="country-note">1915-től, balkáni szövetséges</span>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div class="divider">Számok a háborúból</div>
+
+  <!-- STATS -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value">17M+</div>
+      <div class="stat-label">Halott katona és civil</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">30</div>
+      <div class="stat-label">Érintett ország</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">70M</div>
+      <div class="stat-label">Mozgósított katona</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">4</div>
+      <div class="stat-label">Birodalom omlott össze</div>
+    </div>
+  </div>
+
+  <!-- CAUSES -->
+  <div class="cause-card">
+    <h2>A háború okai — a MAIN-modell</h2>
+    <div class="cause-grid">
+      <div class="cause-item">
+        <div class="cause-letter">M</div>
+        <div class="cause-name">Militarizmus</div>
+        <p class="cause-desc">A nagyhatalmak hatalmas hadseregeket és hadiflottákat építettek fel, fegyverkezési versenybe keveredve.</p>
+      </div>
+      <div class="cause-item">
+        <div class="cause-letter">A</div>
+        <div class="cause-name">Szövetségi rendszerek</div>
+        <p class="cause-desc">Titkos szerződések hálózata: egy lokális konfliktus automatikusan kontinentális háborúvá eszkalálódhatott.</p>
+      </div>
+      <div class="cause-item">
+        <div class="cause-letter">I</div>
+        <div class="cause-name">Imperializmus</div>
+        <p class="cause-desc">A gyarmatokért és kereskedelmi útvonalakért folytatott verseny súlyos feszültségeket szított a nagyhatalmak között.</p>
+      </div>
+      <div class="cause-item">
+        <div class="cause-letter">N</div>
+        <div class="cause-name">Nacionalizmus</div>
+        <p class="cause-desc">A szláv, germán és más népek öntudatának erősödése különösen a Balkánon robbantott ki válságokat.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="timeline-section">
+    <div class="timeline-header">
+      <h2>A háború főbb eseményei</h2>
+    </div>
+    <div class="timeline-body">
+      <div class="tl-item">
+        <div class="tl-year">1914</div>
+        <div class="tl-line-col"><div class="tl-dot"></div><div class="tl-vline"></div></div>
+        <div class="tl-content">
+          <h3>A háború kitörése</h3>
+          <p>Ferenc Ferdinánd meggyilkolása Szarajevóban (jún. 28.) elindítja a szövetségi dominóeffektet. Az Osztrák–Magyar Monarchia hadat üzen Szerbiának, majd egymás után lépnek be a nagyhatalmak.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1915</div>
+        <div class="tl-line-col"><div class="tl-dot"></div><div class="tl-vline"></div></div>
+        <div class="tl-content">
+          <h3>Gallipoli és az állóháború</h3>
+          <p>Az antant sikertelen gallipoli hadjárata. Olaszország átáll az antant oldalára. A nyugati fronton lövészárkok ezrei rögzítik a frontvonalakat.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1916</div>
+        <div class="tl-line-col"><div class="tl-dot"></div><div class="tl-vline"></div></div>
+        <div class="tl-content">
+          <h3>Verdun és a Somme</h3>
+          <p>A történelem legvéresebb csatái — Verdunnél és a Somme folyónál együttesen közel 2 millió áldozat. A jütlandi tengeri ütközet lezárja a brit–német flottaversengést.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1917</div>
+        <div class="tl-line-col"><div class="tl-dot"></div><div class="tl-vline"></div></div>
+        <div class="tl-content">
+          <h3>Fordulópont: USA és az orosz forradalom</h3>
+          <p>Az Egyesült Államok belép a háborúba (ápr.). Az orosz forradalom után Oroszország kilép (brest-litovszki béke, 1918). Az USA friss erői döntő fordulatot hoznak.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1918</div>
+        <div class="tl-line-col"><div class="tl-dot"></div><div class="tl-vline"></div></div>
+        <div class="tl-content">
+          <h3>A háború vége — fegyverszünet</h3>
+          <p>Novemberben összeomlanak a Központi hatalmak. November 11-én reggel 11 órakor életbe lép a fegyverszünet. A versailles-i béke (1919) hivatalosan lezárja a háborút.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXTRA PHOTO ROW -->
+  <div class="photo-section">
+    <div class="photo-grid">
+      <div class="photo-block entente-photo">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Over_the_top_1917.jpg/800px-Over_the_top_1917.jpg"
+          alt="Brit katonák rohamra indulnak, 1917"
+          onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Camouflaged_British_tank_and_soldiers_walking_1918.jpg/800px-Camouflaged_British_tank_and_soldiers_walking_1918.jpg'"
+        />
+        <div class="photo-caption">
+          <div class="photo-caption-title">A nyugati front</div>
+          <div class="photo-caption-desc">Antant katonák rohamra indulnak a lövészárokból, 1917 — IWM / Wikimedia Commons</div>
+        </div>
+      </div>
+      <div class="photo-block central-photo">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Bundesarchiv_Bild_183-R05148%2C_Westfront%2C_deutsche_Infanterie.jpg/800px-Bundesarchiv_Bild_183-R05148%2C_Westfront%2C_deutsche_Infanterie.jpg"
+          alt="Német gyalogosok a nyugati fronton"
+          onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/WWI_-_1914_-_German_Infantry.jpg/800px-WWI_-_1914_-_German_Infantry.jpg'"
+        />
+        <div class="photo-caption">
+          <div class="photo-caption-title">Német gyalogság</div>
+          <div class="photo-caption-desc">Német gyalogosok a nyugati fronton — Bundesarchiv / Wikimedia Commons (CC-BY-SA 3.0 DE)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="footer-note">Az első világháború négy éve alapvetően átrajzolta Európa és a világ térképét — négy birodalom tűnt el, és megszültek a 20. század legfontosabb politikai mozgalmai.</p>
+
+</div>
+</body>
+</html>
